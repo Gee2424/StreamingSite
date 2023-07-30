@@ -6,20 +6,20 @@ window.onload = function() {
     fetch('https://vidsrc.me/movies/latest/page-1.json')
       .then(response => response.json())
       .then(data => {
-        // Split the string into an array of movies
-        const movies = data.ContentChunk.split('title');
-        
-        // Display the list of movies
-        movies.forEach(movie => {
-          const movieButton = document.createElement('button');
-          movieButton.textContent = movie;
-          movieButton.addEventListener('click', () => {
-            // Extract the imdb id from the movie string
-            const imdb = movie.match(/imdbid(.*?)embedurl/)[1];
-            streamMovie(imdb);
+        // Check if data exists before trying to use it
+        if (data) {
+          // Display the list of movies
+          data.forEach(movie => {
+            const movieButton = document.createElement('button');
+            movieButton.textContent = movie.title;
+            movieButton.addEventListener('click', () => {
+              streamMovie(movie.imdb);
+            });
+            movieListDiv.appendChild(movieButton);
           });
-          movieListDiv.appendChild(movieButton);
-        });
+        } else {
+          console.error('Error: data is undefined');
+        }
       })
       .catch(error => console.error('Error:', error));
   
