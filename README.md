@@ -4,3 +4,5 @@ This project involves creating a simple, user-friendly website that uses the Vid
 IMDB or TMDB is needed
 
 the site should work like most free streaming sites
+
+the site could also have ability to allow users to save progress
