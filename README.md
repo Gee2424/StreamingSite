@@ -10,3 +10,5 @@ the site could also have ability to allow users to save progress
 user database could also be a nice feature for the site
 
 a server side and front end will be most likely needed
+
+two main apis will be needed
