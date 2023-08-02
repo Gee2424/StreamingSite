@@ -1,15 +1,36 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>My Movie Streaming Site</title>
-  <!-- Add your CSS file here -->
   <link rel="stylesheet" type="text/css" href="styles.css">
-  <!-- Add your JavaScript file here -->
-  <script src="script.js"></script>
 </head>
 <body>
-  <h1>My Movie Streaming Site</h1>
-  <div id="movieList"></div>
-  <div id="moviePlayer"></div>
+  <header>
+    <h1>My Movie Streaming Site</h1>
+    <div id="loadingIndicator" style="display: none;">Loading...</div>
+  </header>
+  
+  <main>
+    <section>
+      <h2>Movie List</h2>
+      <button id="loadMovies">Load Latest Movies</button>
+      <div id="movieList"></div>
+    </section>
+  
+    <section>
+      <h2>Movie Player</h2>
+      <button id="playMovie">Play Movie</button>
+      <div id="moviePlayer"></div>
+    </section>
+  </main>
+  
+  <footer>
+    <p>© 2023 My Movie Streaming Site</p>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
