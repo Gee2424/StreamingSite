@@ -45,4 +45,4 @@ This project is licensed under the [MIT License](LICENSE).
 StreamingSite is a project created for educational and non-commercial purposes only. The website does not host any copyrighted content. The use of this site to stream movies should comply with all applicable copyright laws and regulations. The developers and contributors of this project are not responsible for any misuse of the website or its content.
 
 ## Contact
-For any questions or inquiries related to this project, please contact us at [contact@streamingsite.com](mailto:contact@streamingsite.com).
+For any questions or inquiries related to this project, please contact us at [contact@streamingsite.com]
