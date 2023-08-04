@@ -1,36 +1,64 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>My Movie Streaming Site</title>
-  <link rel="stylesheet" type="text/css" href="styles.css">
+  <title>Latest Movies</title>
 </head>
 <body>
-  <header>
-    <h1>My Movie Streaming Site</h1>
-  </header>
-  
-  <main>
-    <div class="loader" id="loadingIndicator" style="display: none;"></div>
-    <section>
-      <h2>Movie List</h2>
-      <button id="loadMovies">Load Latest Movies</button>
-      <div id="movieList"></div>
-    </section>
-  
-    <section>
-      <h2>Movie Player</h2>
-      <button id="playMovie">Play Movie</button>
-      <div id="moviePlayer"></div>
-    </section>
-  </main>
-  
-  <footer>
-    <p>© 2023 My Movie Streaming Site</p>
-  </footer>
+  <div id="movieList"></div>
+  <div id="moviePlayer"></div>
 
-  <script src="script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const movieListDiv = document.getElementById('movieList');
+      const moviePlayerDiv = document.getElementById('moviePlayer');
+
+      // Fetch the list of latest movies
+      fetchLatestMovies();
+
+      function fetchLatestMovies() {
+        fetch('https://vidsrc.me/movies/latest/page-1.json')
+          .then(response => {
+            if (!response.ok) {
+              throw new Error('Network response was not ok');
+            }
+            return response.json();
+          })
+          .then(data => {
+            if (data && Array.isArray(data)) {
+              // Display the list of movies
+              data.forEach(movie => {
+                createMovieButton(movie);
+              });
+            } else {
+              console.error('Error: Invalid data format');
+            }
+          })
+          .catch(error => {
+            console.error('Error:', error.message);
+          });
+      }
+
+      function createMovieButton(movie) {
+        const movieButton = document.createElement('button');
+        movieButton.textContent = movie.title;
+        movieButton.addEventListener('click', () => {
+          streamMovie(movie.imdb);
+        });
+        movieListDiv.appendChild(movieButton);
+      }
+
+      function streamMovie(imdb) {
+        // Use the VidSrc API to get the streaming URL
+        const streamingUrl = `https://vidsrc.me/embed/movie?imdb=${imdb}`;
+
+        moviePlayerDiv.innerHTML = '';
+        const iframe = document.createElement('iframe');
+        iframe.src = streamingUrl;
+        iframe.setAttribute('frameborder', '0');
+        iframe.setAttribute('allowfullscreen', 'true');
+        moviePlayerDiv.appendChild(iframe);
+      }
+    });
+  </script>
 </body>
 </html>
